@@ -31,7 +31,20 @@ public class TaskController {
     }
 
     //get individual task
+    @GetMapping("{userId}/tasks/{taskId}")
+    public ResponseEntity<TaskDTO> getTask(@PathVariable(name = "userId") long userId,@PathVariable(name = "taskId") long taskId)
+    {
+
+        return new ResponseEntity<>(taskService.getTask(userId,taskId),HttpStatus.OK);
+
+    }
 
     //del individual task
+    @DeleteMapping("/{taskId}/task")
+    public ResponseEntity<TaskDTO> deleteTask(@PathVariable(name = "taskId") long taskId)
+    {
+        return new ResponseEntity<>(taskService.deleteTask(taskId),HttpStatus.OK);
+
+    }
 
 }
